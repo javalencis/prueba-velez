@@ -1,0 +1,18 @@
+.Tabs{
+    width: 100%;
+    text-align: center;
+}
+
+.Tabs-buttons{
+    background: none;
+    color: #929292;
+    border: none;
+    padding: 24px;
+    margin:0 20px ;
+    cursor: pointer;
+
+}
+
+.Tabs-buttons.active{
+    text-decoration: underline;
+}
