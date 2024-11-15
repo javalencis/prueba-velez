@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { Home } from './pages/Home';
-import './styles/index.css'
+import React from "react";
+import { Home } from "./pages/Home";
+import "./styles/index.css";
+import { AppContextProvider } from "./context/AppContextProvider";
 
 const App: React.FC = () => {
-	const [state, setState] = useState(0);
-	return (
-		<Home/>
-	);
+  return (
+    <AppContextProvider>
+      <Home />
+    </AppContextProvider>
+  );
 };
 
 export default App;

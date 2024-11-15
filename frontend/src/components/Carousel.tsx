@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/Carousel.css";
 import { formatPrice } from "../utils/functions";
+import { Product } from "../interfaces";
+import { addProductCart } from "../services/addProductCart";
+import { AppContext, AppContextType } from "../context/AppContext";
 
-interface Product {
-  productId: string;
-  productName: string;
-  description: string;
-  imageUrl: string;
-  price: number;
-}
+
 
 interface CarouselProps {
   products: Product[];
@@ -18,6 +15,7 @@ const Carousel: React.FC<CarouselProps> = ({ products }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const visibleItems = 3;
   const maxIndex = Math.min(products.length, 6) - visibleItems;
+  const {setProductsCart} = useContext(AppContext) as AppContextType
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
@@ -30,6 +28,12 @@ const Carousel: React.FC<CarouselProps> = ({ products }) => {
       prevIndex === 0 ? maxIndex : prevIndex - 3
     );
   };
+
+  const handleAddProductCart = (product:Product) =>{
+    setProductsCart((products:Product[]) => [...products,product])
+    addProductCart(product)
+
+  }
 
   return (
     <div className="Carousel">
@@ -51,7 +55,7 @@ const Carousel: React.FC<CarouselProps> = ({ products }) => {
                   <h3>{product.productName}</h3>
                   <p>{formatPrice(product.price)}</p>
                 </div>
-                <div className="item-addcart">
+                <div className="item-addcart" onClick={()=>handleAddProductCart(product)}>
                   <img
                     src="https://cuerosvelezco.vtexassets.com/arquivos/miniCart2.svg"
                     alt=""
