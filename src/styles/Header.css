@@ -1,0 +1,35 @@
+.Header{
+    width:100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 52px;
+
+}
+.Header-menu{
+    position: absolute;
+    left: 0;
+    padding: 0 30px;
+}
+
+.Header-menuOptions{
+    position: absolute;
+    right: 0;
+    padding: 0 30px;
+}
+
+.Header-menu ul{
+    display: flex;
+    gap: 2em;
+    
+}
+
+.Header-menuOptions ul{
+    display: flex;
+    gap: 15px;
+}
+.Header-menuOptions li{
+    cursor: pointer;
+}
