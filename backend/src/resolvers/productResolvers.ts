@@ -1,6 +1,6 @@
 import { fetchProducts } from '../vtexAPI';
 
-export const resolvers = {
+export const productResolvers = {
   Query: {
     getProducts: async () => {
       const products = await fetchProducts();
