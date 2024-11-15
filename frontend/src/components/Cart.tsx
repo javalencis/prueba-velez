@@ -9,9 +9,11 @@ import iconBack from "../assets/back.png";
 import { Product } from "../interfaces";
 import { updateProductCart } from "../services/updateProductCart";
 export const Cart: React.FC = () => {
-  const { productsCart, setProductsCart, isVisibleCart,setIsVisibleCart } = useContext(
-    AppContext
-  ) as AppContextType;
+  const { productsCart, setProductsCart, isVisibleCart, setIsVisibleCart } =
+    useContext(AppContext) as AppContextType;
+  const [sale, setSale] = useState<boolean>(true);
+  const [userId, setUserId] = useState<number>();
+
   const handleDeleteProductCart = (product: Product) => {
     const newProductsCart = productsCart.filter(
       (p) => p.productId !== product.productId
@@ -19,15 +21,33 @@ export const Cart: React.FC = () => {
     setProductsCart(newProductsCart);
     updateProductCart(newProductsCart);
   };
-  const handleOpenCart = ()=>{
-    setIsVisibleCart(value =>!value)
+  const handleOpenCart = () => {
+    setIsVisibleCart((value) => !value);
+  };
+
+  const handleUserId = (e: React.ChangeEvent<HTMLInputElement>) =>{
+    const value = parseInt(e.target.value);
+    if(isNaN(value)){
+        setUserId(undefined);
+    }else{
+        setUserId(value)
+    }
+    
   }
+  const handleCheckout = () => {
+    if (sale) {
+      //Finalizo compra
+      setSale(false);
+    } else {
+      setSale(true);
+    }
+  };
 
   return (
     <div className={isVisibleCart ? "Cart open" : "Cart closed"}>
       <div className="CartContent">
         <div className="ContentTop">
-          <img src={iconBack} alt="" onClick={handleOpenCart}/>
+          <img src={iconBack} alt="" onClick={handleOpenCart} />
           <p>BOLSA DE COMPRAS</p>
         </div>
         <div className="ProductsCart">
@@ -54,7 +74,10 @@ export const Cart: React.FC = () => {
           ))}
         </div>
         <div className="ButtonCheckout">
-          <button>FINALIZAR COMPRA</button>
+          {sale && (
+            <input type="number" placeholder="Numero de documento" value={userId} onChange={handleUserId} required />
+          )}
+          <button onClick={handleCheckout}>FINALIZAR COMPRA</button>
         </div>
       </div>
     </div>

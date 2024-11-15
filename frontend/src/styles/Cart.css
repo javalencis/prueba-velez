@@ -84,16 +84,27 @@
     height: auto;
     cursor: pointer;
 }
+.ButtonCheckout{
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 0 20px;
+}
+.ButtonCheckout input{
+    width: 80%;
+    padding: 10px;
+}
 
 .ButtonCheckout button{
-    width: 100%;
+    width:100%;
     background-color: #262626;
     border: none;
     color: #ffffff;
     font-size: 14px;
     padding: 10px;
     cursor: pointer;
-    position:absolute;
-    bottom: 0;
+    margin: 0 auto;
     margin-bottom: 30px;
+    margin-top: 20px;
 }
