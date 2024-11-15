@@ -5,7 +5,7 @@ export const orderTypeDefs = gql`
     id: ID!
     orderId: String!
     date: String!
-    customerDocument: String!
+    customerDocument: Int!
     productIds: [String!]!
     quantity: Int!
     totalPrice: Float!
@@ -18,7 +18,7 @@ export const orderTypeDefs = gql`
   type Mutation {
     createOrder(
       orderId: String!,
-      customerDocument: String!,
+      customerDocument: Int!,
       productIds: [String!]!,
       quantity: Int!,
       totalPrice: Float!
