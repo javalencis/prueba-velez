@@ -5,7 +5,7 @@ import { typeDefs } from './schemas/productSchema';
 import { resolvers } from './resolvers/productResolvers';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-
+import cors from 'cors'
 dotenv.config();
 
 async function startServer() {
@@ -19,7 +19,7 @@ async function startServer() {
   // Inicializar el servidor de Apollo
   await server.start();
 
-  // Usar `expressMiddleware` en lugar de `applyMiddleware`
+  app.use(cors())
   app.use(
     '/graphql',
     bodyParser.json(),
