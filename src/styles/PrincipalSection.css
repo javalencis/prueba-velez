@@ -1,0 +1,35 @@
+.PrincipalSection{
+    position: relative;
+    height: 100vh;
+}
+
+.PrincipalSection video{
+    width: 100%;
+
+}
+
+.PrincipalSection-button{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+    
+}
+
+.PrincipalSection-button button{
+
+    border: 1px solid #ffffff;
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    background-color: #3b3a3a4d;
+    padding: 8px 32px;
+    font-size: 14px;
+    transition: .5s all ease;
+    cursor: pointer;
+}
+
+.PrincipalSection-button button:hover{
+    border: 1px solid #3b3a3a4d;
+}
+

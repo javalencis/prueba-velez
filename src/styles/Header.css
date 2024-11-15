@@ -4,8 +4,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+
     height: 52px;
+    z-index: 100;
 
 }
 .Header-menu{
