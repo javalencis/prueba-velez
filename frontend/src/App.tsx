@@ -5,13 +5,21 @@ import { AppContextProvider } from "./context/AppContextProvider";
 import { Cart } from "./components/Cart";
 import { ApolloProvider } from "@apollo/client";
 import client from "./apollo/client";
+import { Admin } from "./pages/Admin";
 
 const App: React.FC = () => {
+  console.log(window.location.pathname);
   return (
     <ApolloProvider client={client}>
       <AppContextProvider>
-        <Home />
-        <Cart />
+        {window.location.pathname === "/admin" ? (
+          <Admin />
+        ) : (
+          <>
+            <Home />
+            <Cart />
+          </>
+        )}
       </AppContextProvider>
     </ApolloProvider>
   );
