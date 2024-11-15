@@ -8,11 +8,15 @@ import iconDelete from "../assets/iconDelete.png";
 import iconBack from "../assets/back.png";
 import { Product } from "../interfaces";
 import { updateProductCart } from "../services/updateProductCart";
+import { useMutation } from "@apollo/client";
+import { CREATE_ORDER } from "../apollo/queries";
 export const Cart: React.FC = () => {
+    const [createOrder] = useMutation(CREATE_ORDER)
   const { productsCart, setProductsCart, isVisibleCart, setIsVisibleCart } =
     useContext(AppContext) as AppContextType;
   const [sale, setSale] = useState<boolean>(true);
   const [userId, setUserId] = useState<number>();
+
 
   const handleDeleteProductCart = (product: Product) => {
     const newProductsCart = productsCart.filter(
@@ -34,14 +38,40 @@ export const Cart: React.FC = () => {
     }
     
   }
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (sale) {
-      //Finalizo compra
+        const orderId = Date.now().toString();
+        const productIds = productsCart.map((product) => product.productId);
+        const totalPrice = productsCart.reduce(
+          (total, product) => total + product.price,
+          0
+        );
+        const quantity = productsCart.length;
+        try {
+          await createOrder({
+            variables: {
+              orderId,
+              customerDocument: userId,
+              productIds,
+              quantity,
+              totalPrice,
+            },
+          });
+          alert("Compra realizada con éxito");
+          setProductsCart([]);
+          setUserId(undefined);
+        } catch (error) {
+          console.error("Error al crear la orden:", error);
+          alert("Hubo un error al procesar tu compra");
+        }
+      
       setSale(false);
     } else {
       setSale(true);
     }
   };
+
+  console.log(userId)
 
   return (
     <div className={isVisibleCart ? "Cart open" : "Cart closed"}>

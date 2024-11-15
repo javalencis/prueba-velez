@@ -10,13 +10,13 @@ import client from '../apollo/client'
 
 export const Home : React.FC = () => {
   return (
-    <ApolloProvider client={client}>
+    <>
         <Header/>
         <PrincipalSection/>
         <CategoryTabs/>
         <ProductsList/>
         <GiftBannerSection/>
         <Footer/>
-    </ApolloProvider>
+    </>
   )
 }
