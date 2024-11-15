@@ -7,12 +7,17 @@
 
     height: 52px;
     z-index: 100;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .5) 0, transparent 97%);
 
 }
 .Header-menu{
     position: absolute;
     left: 0;
     padding: 0 30px;
+    
+}
+.Header-menu a{
+    color: #fff;
 }
 
 .Header-menuOptions{
@@ -33,4 +38,18 @@
 }
 .Header-menuOptions li{
     cursor: pointer;
+}
+.Header-menuOptions .Header-ButtonCart{
+    position: relative;
+}
+.Header-menuOptions .Header-ButtonCart p{
+    position: absolute;
+    background-color: #fff;
+    border-radius: 100%;
+    width: 14px;
+    height: 14px;
+    text-align: center;
+    font-size: 12px;
+    top: -3px;
+    right: -6px;
 }

@@ -11,13 +11,15 @@ interface AppContextProviderProps {
 export const AppContextProvider:React.FC<AppContextProviderProps> = ({children}) => {
 
   const [productsCart, setProductsCart] = useState<Product[]>([])
+  const [isVisibleCart, setIsVisibleCart] = useState<boolean>(true)
+
 
   useEffect(()=>{
     setProductsCart(getProductsCart())
   },[])
 
   return (
-    <AppContext.Provider value={{productsCart,setProductsCart}}>
+    <AppContext.Provider value={{productsCart,setProductsCart,isVisibleCart,setIsVisibleCart}}>
       {children}
     </AppContext.Provider>
   )

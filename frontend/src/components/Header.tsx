@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import '../styles/Header.css'
+import { AppContext, AppContextType } from "../context/AppContext";
 export const Header: React.FC = () => {
+  const {productsCart,setIsVisibleCart} = useContext(AppContext) as AppContextType
+
+  const totalCart = productsCart.length
+  const handleOpenCart = () => {
+    setIsVisibleCart(value => !value)
+  }
   return (
     <header className="Header">
       <nav className="Header-menu">
@@ -15,8 +22,15 @@ export const Header: React.FC = () => {
 
       <nav className="Header-menuOptions">
         <ul>
-            <li><img src="https://cuerosvelezco.vtexassets.com/arquivos/miniCart2.svg" alt="" /></li>
-            <li><img src="https://cuerosvelezco.vtexassets.com/arquivos/account02.svg" alt="" /></li>
+            <li className="Header-ButtonCart" onClick={handleOpenCart}>
+              <img src="https://cuerosvelezco.vtexassets.com/arquivos/miniCart2.svg" alt="" />
+              {totalCart>0 &&  <p className="TotalCart">{totalCart}</p>}
+             
+              </li>
+            <li >
+              <img src="https://cuerosvelezco.vtexassets.com/arquivos/account02.svg" alt="" />
+              
+              </li>
         </ul>
       </nav>
     </header>
